@@ -4,49 +4,49 @@ import (
 	"fmt"
 )
 
-func CliCreate(args []string) {
+func CliCreate(args []string) error {
 	fmt.Printf("Create database %v\n", args)
 
 	if len(args) != 2 {
-		fmt.Println("Syntax: create|c <database>")
-		return
+		return fmt.Errorf("Syntax: create|c <database>")
 	}
+	return nil
 }
 
-func CliRemove(args []string) {
+func CliRemove(args []string) error {
 	fmt.Printf("Remove database %v\n", args)
 
 	if len(args) != 2 {
-		fmt.Println("Syntax: remove|r <database>")
-		return
+		return fmt.Errorf("Syntax: remove|r <database>")
 	}
+	return nil
 }
 
-func CliSet(args []string) {
+func CliSet(args []string) error {
 	fmt.Printf("Set key-value pair %v\n", args)
 
 	if len(args) != 3 {
-		fmt.Println("Syntax: set|s <key> <value>")
-		return
+		return fmt.Errorf("Syntax: set|s <key> <value>")
 	}
+	return nil
 }
 
-func CliGet(args []string) {
+func CliGet(args []string) error {
 	fmt.Printf("Get value for key %v\n", args)
 
 	if len(args) != 2 {
-		fmt.Println("Syntax: get|g <key>")
-		return
+		return fmt.Errorf("Syntax: get|g <key>")
 	}
+	return nil
 }
 
-func CliDel(args []string) {
+func CliDel(args []string) error {
 	fmt.Printf("Delete key-value pair %v\n", args)
 
 	if len(args) != 2 {
-		fmt.Println("Syntax: del|d <key>")
-		return
+		return fmt.Errorf("Syntax: del|d <key>")
 	}
+	return nil
 }
 
 func CliHelp(args []string) {

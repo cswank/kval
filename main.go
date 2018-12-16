@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"os/user"
 	"regexp"
@@ -25,8 +26,7 @@ func main() {
 		fmt.Printf("Create kval directory %v", kvaldir)
 		err = os.Mkdir(kvaldir, 0777)
 		if err != nil {
-			fmt.Printf(" failed\n")
-			os.Exit(0)
+			log.Fatal(" failed\n")
 		}
 		fmt.Printf("\n")
 	}
@@ -43,20 +43,25 @@ func main() {
 
 		if len(s3) > 0 {
 			s4 := strings.Split(s3, " ")
+			var err error
 			switch s4[0] {
 			case "quit":
 				os.Exit(0)
 			case "create", "c":
-				CliCreate(s4)
+				err = CliCreate(s4)
 			case "remove", "r":
-				CliRemove(s4)
+				err = CliRemove(s4)
 			case "set", "s":
-				CliSet(s4)
+				err = CliSet(s4)
 			case "get", "g":
-				CliGet(s4)
+				err = CliGet(s4)
 			case "del", "d":
-				CliDel(s4)
+				err = CliDel(s4)
 			default:
+				CliHelp(s4)
+			}
+
+			if err != nil {
 				CliHelp(s4)
 			}
 		}
